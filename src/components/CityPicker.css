@@ -1,0 +1,102 @@
+.city-picker-container {
+  margin-top: 150px;
+  width: 30%;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  position: relative; /* Added */
+  display: inline-block; /* Added to ensure width consistency */
+}
+
+.city-picker-container h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.city-picker-input {
+  padding: 1rem;
+  width: 100%; /* Changed to 100% for consistency */
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  border-radius: 2rem;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.city-picker-input:focus {
+  border-color: #007bff;
+}
+
+.city-list {
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 20px;
+}
+
+.city-list li {
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s;
+  display: flex; /* Added to align items horizontally */
+  align-items: center; /* Added to align items vertically */
+}
+
+.city-list a {
+  text-decoration: none;
+  color: #333;
+  display: flex; /* Added to align items horizontally */
+  align-items: center; /* Added to align items vertically */
+  gap: 10px;
+  align-items: center;
+}
+
+.city-list li a {
+  text-decoration: none;
+  color: #333;
+  display: flex; /* Added to align items horizontally */
+  align-items: center; /* Added to align items vertically */
+  gap: 10px;
+  align-items: center;
+}
+
+.city-list li:hover {
+  background: #f0f0f0;
+}
+
+.city-list li:hover a {
+  color: #007bff;
+}
+
+.city-dropdown {
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 100%; /* Positioned right below the input */
+  left: 0;
+  width: 100%; /* Same width as the input */
+  background-color: #fff;
+  z-index: 1000;
+  padding: 0;
+}
+
+.map-icon {
+  width: 20px;
+  height: 20px;
+  background-color: #007bff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+}
