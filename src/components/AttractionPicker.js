@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-
 import "./AttractionPicker.css";
 
 const attractionsList = [
@@ -28,17 +27,23 @@ const attractionsList = [
   "events",
 ];
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 function AttractionPicker({ onSubmit }) {
   const [city, setCity] = useState("");
   const [totalDays, setTotalDays] = useState(0);
   const [selectedAttractions, setSelectedAttractions] = useState([]);
   const [itinerary, setItinerary] = useState(null); // State to store itinerary response
+  const query = useQuery();
 
   useEffect(() => {
-    // Simulate fetching data (replace with actual fetch if needed)
-    setCity("Dambulla");
-    setTotalDays(3);
-  }, []);
+    const cityParam = query.get("city") || "Dambulla";
+    const totalDaysParam = parseInt(query.get("totalDays"), 10) || 3;
+    setCity(cityParam);
+    setTotalDays(totalDaysParam);
+  }, [query]);
 
   const toggleAttraction = (attraction) => {
     setSelectedAttractions((prevSelected) => {
