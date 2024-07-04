@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import "./CityPicker.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import PopularActivities from "./PopularActivities";
 
 function CityPicker({ setCity }) {
   const [cities, setCities] = useState([]);
@@ -142,6 +143,7 @@ function CityPicker({ setCity }) {
           })}
         </div>
       </div>
+      <PopularActivities />
     </>
   );
 }
