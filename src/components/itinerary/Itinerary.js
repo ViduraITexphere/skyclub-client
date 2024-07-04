@@ -11,6 +11,7 @@ function Itinerary({ data }) {
 
   useEffect(() => {
     const backendUrl = "https://skyclub-server.vercel.app/api/places/itinerary";
+    // const backendUrl = "http://localhost:5000/api/places/itinerary";
 
     fetch(backendUrl, {
       method: "POST",

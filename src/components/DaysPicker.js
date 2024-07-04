@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button"; // Import Button component from react-bootstrap
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import ProgressBar from "react-bootstrap/ProgressBar";
+import "./DaysPicker.css";
 
 export function DaysPicker({ city }) {
   const [selected, setSelected] = useState([]);
@@ -52,7 +53,7 @@ export function DaysPicker({ city }) {
   return (
     <Container
       fluid
-      className="d-flex align-items-center justify-content-center vh-100"
+      className="main d-flex align-items-center justify-content-center vh-100"
     >
       <div>
         <ProgressBar
@@ -78,7 +79,7 @@ export function DaysPicker({ city }) {
         >
           When do you want to go?
         </h1>
-        <Row className="justify-content-center">
+        <Row className="justify-content-center wrapper">
           <Col xs="auto">
             <DayPicker
               mode="multiple"

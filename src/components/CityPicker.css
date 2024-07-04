@@ -1,5 +1,5 @@
 .city-picker-container {
-  margin-top: 150px;
+  margin-top: 50px;
   width: 30%;
   text-align: center;
   font-family: "Poppins", sans-serif;
@@ -99,4 +99,49 @@
   color: #fff;
   font-size: 0.8rem;
   padding: 0.5rem;
+}
+.city-list-wrapper {
+  margin-top: 20px;
+}
+.city-list-wrapper h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+.city-list-suggestion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0; /* Adjust the gap between items */
+  flex-direction: row; /* Align items horizontally */
+  align-items: center;
+  justify-content: center;
+}
+
+.city-item {
+  width: 200px; /* Adjust width as needed */
+  margin-bottom: 20px; /* Optional margin between rows */
+}
+
+.city-item-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.city-item img {
+  width: 160px;
+  height: 140px;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 8px; /* Optional: Rounded corners */
+}
+
+.city-name p {
+  margin-top: 8px; /* Optional: Space between icon and name */
+  text-decoration: none !important; /* Remove underline */
+  color: #000;
+  font-weight: 500;
 }

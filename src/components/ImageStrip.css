@@ -1,0 +1,28 @@
+.image-strip {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 100px; /* Adjust this value as needed */
+}
+
+.image-strip-inner {
+  display: flex;
+  width: calc(200%); /* Twice the width to accommodate repeated images */
+  animation: slide 20s linear infinite; /* Adjust duration as needed */
+}
+
+.image-strip-inner img {
+  width: 100px; /* Adjust this value as needed */
+  height: auto;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(
+      -50%
+    ); /* Move the strip to the left by half its width */
+  }
+}

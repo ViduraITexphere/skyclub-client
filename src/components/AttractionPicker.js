@@ -3,6 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Button from "react-bootstrap/Button";
 import "./AttractionPicker.css";
+import ImageStrip from "./ImageStrip";
 
 const attractionsList = [
   "hiking",
@@ -111,6 +112,7 @@ function AttractionPicker({ onSubmit }) {
           height: "8px",
         }}
       />
+      <ImageStrip />
       <div
         className="container"
         style={{
