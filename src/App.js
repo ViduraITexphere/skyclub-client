@@ -6,6 +6,7 @@ import AttractionPicker from "./components/AttractionPicker";
 import Itinerary from "./components/itinerary/Itinerary";
 
 import "./App.css";
+import Header from "./components/header/Header";
 
 function App() {
   const [city, setCity] = useState("");
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route path="/" element={<CityPicker setCity={setCity} />} />
         <Route path="/days" element={<DaysPicker city={city} />} />
