@@ -19,7 +19,8 @@ function Itinerary({ data }) {
   console.log("Itinerary data🚀:", itinerary);
 
   useEffect(() => {
-    const backendUrl = "https://skyclub-server.vercel.app/api/places/itinerary";
+    const backendUrl =
+      "https://skyclub-server-new.vercel.app/api/places/itinerary";
 
     fetch(backendUrl, {
       method: "POST",
@@ -57,7 +58,7 @@ function Itinerary({ data }) {
       return;
     }
 
-    const saveUrl = "http://localhost:5000/api/itinerary/save"; // Replace with your backend URL
+    const saveUrl = "https://skyclub-server-new.vercel.app/api/itinerary/save"; // Replace with your backend URL
 
     const payload = {
       googleId,

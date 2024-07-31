@@ -13,7 +13,7 @@ function CityPicker({ setCity }) {
   const searchInputRef = useRef(null);
 
   useEffect(() => {
-    fetch("https://skyclub-server.vercel.app/api/places/cities")
+    fetch("https://skyclub-server-new.vercel.app/api/places/cities")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -30,7 +30,7 @@ function CityPicker({ setCity }) {
   }, []);
 
   useEffect(() => {
-    fetch("https://skyclub-server.vercel.app/api/places/place")
+    fetch("https://skyclub-server-new.vercel.app/api/places/place")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
