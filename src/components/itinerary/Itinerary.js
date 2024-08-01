@@ -2,13 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
+import Alert from "react-bootstrap/Alert";
 import "./Itinerary.css";
 import Login from "../../pages/login/Login";
 
 function Itinerary({ data }) {
   const [itinerary, setItinerary] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(""); // State to handle success message
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to manage login status
+
   const googleId = localStorage.getItem("googleId");
   const userToken = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (googleId) {
+      setIsLoggedIn(true);
+    }
+  }, [googleId]);
 
   if (!googleId) {
     console.error("Google ID is missing from localStorage");
@@ -81,7 +91,7 @@ function Itinerary({ data }) {
       })
       .then((data) => {
         console.log("Itinerary saved:", data);
-        // Handle success, show message to the user, etc.
+        setSuccessMessage("Your itinerary was successfully saved!"); // Set success message
       })
       .catch((error) => {
         console.error("Error saving itinerary:", error);
@@ -190,9 +200,16 @@ function Itinerary({ data }) {
             Save Itinerary
           </Button>
         </div>
-        <div className="login-container">
-          <Login />
-        </div>
+        {successMessage && (
+          <Alert variant="success" className="mt-3">
+            {successMessage}
+          </Alert>
+        )}
+        {!isLoggedIn && (
+          <div className="login-container">
+            <Login onLoginSuccess={() => setIsLoggedIn(true)} />
+          </div>
+        )}
       </div>
     </div>
   );

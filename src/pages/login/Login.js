@@ -29,7 +29,7 @@ function Login() {
         console.log("googleId", decodedToken.googleId);
 
         // Redirect to the root directory
-        navigate("/");
+        // navigate("/");
       }
     } catch (error) {
       console.error("Login failed:", error);

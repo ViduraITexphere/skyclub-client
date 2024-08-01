@@ -26,9 +26,9 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <CityPicker setCity={setCity} />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
         <Route path="/days" element={<DaysPicker city={city} />} />
