@@ -81,7 +81,7 @@ function Header() {
       </div>
       <header className="header">
         <div className="header__logo">
-          <img src="/images/Logo.png" alt="Logo" />
+          <img src="/images/logo.png" alt="Logo" />
         </div>
         <nav className="header__nav">
           <ul>
