@@ -104,7 +104,7 @@ function AttractionPicker({ onSubmit }) {
         now={100}
         style={{
           position: "fixed",
-          top: "160px",
+          top: "110px",
           left: "0",
           width: "100%",
           zIndex: "10",

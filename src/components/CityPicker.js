@@ -67,7 +67,7 @@ function CityPicker({ setCity }) {
           now={33.33}
           style={{
             position: "fixed",
-            top: "160px",
+            top: "110px",
             left: "0",
             width: "100%",
             zIndex: "10",

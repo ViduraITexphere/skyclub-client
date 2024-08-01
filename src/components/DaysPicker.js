@@ -61,7 +61,7 @@ export function DaysPicker({ city }) {
           now={66.66}
           style={{
             position: "fixed",
-            top: "160px",
+            top: "110px",
             left: "0",
             width: "100%",
             zIndex: "10",
