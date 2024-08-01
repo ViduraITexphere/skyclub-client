@@ -5,6 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Alert from "react-bootstrap/Alert";
 import "./Itinerary.css";
 import Login from "../../pages/login/Login";
+import Quote from "../quote/Quote";
 
 function Itinerary({ data }) {
   const [itinerary, setItinerary] = useState(null);
@@ -200,6 +201,9 @@ function Itinerary({ data }) {
             Save Itinerary
           </Button>
         </div>
+        {/* Pass the itinerary data as a prop to the Quote component */}
+        {itinerary && <Quote itinerary={itinerary} />}
+
         {successMessage && (
           <Alert variant="success" className="mt-3">
             {successMessage}

@@ -1,0 +1,129 @@
+/* General container styling */
+.quote-container {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title and subtitle */
+.quote-title {
+  font-size: 1.75rem; /* Reduced size */
+  color: #2c3e50;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 10px;
+}
+
+.quote-subtitle {
+  font-size: 1.25rem; /* Reduced size */
+  color: #34495e;
+  margin-bottom: 15px;
+}
+
+/* Day container styling */
+.day-container {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ecf0f1;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.day-title {
+  font-size: 1.125rem; /* Reduced size */
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+/* Accordion group */
+.accordion-header {
+  font-size: 0.875rem; /* Smaller font size */
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.accordion-body {
+  font-size: 0.875rem; /* Consistent smaller font size */
+  padding: 10px 15px;
+}
+
+.accordion-header .item-number {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* Restaurant title */
+.restaurant-title {
+  font-size: 1.125rem; /* Consistent with day-title size */
+  margin-top: 20px;
+  color: #2c3e50;
+}
+
+/* User info section */
+.user-info {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ecf0f1;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.user-info-title {
+  font-size: 1.125rem; /* Consistent with day-title size */
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.user-info-text {
+  font-size: 0.875rem;
+  color: #7f8c8d;
+}
+
+/* Form styling */
+.quote-form {
+  margin-top: 30px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.875rem;
+  color: #2c3e50;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 0.875rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.form-submit {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-submit:hover {
+  background-color: #2980b9;
+}

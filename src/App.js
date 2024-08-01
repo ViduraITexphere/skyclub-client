@@ -9,6 +9,7 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Login from "./pages/login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Quote from "./components/quote/Quote";
 
 function App() {
   const [city, setCity] = useState("");
@@ -27,12 +28,13 @@ function App() {
           path="/"
           element={
             // <ProtectedRoute>
-              <CityPicker setCity={setCity} />
+            <CityPicker setCity={setCity} />
             // </ProtectedRoute>
           }
         />
         <Route path="/days" element={<DaysPicker city={city} />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/quote" element={<Quote />} />
 
         <Route
           path="attractions"
@@ -42,6 +44,6 @@ function App() {
       </Routes>
     </div>
   );
-} 
+}
 
 export default App;
