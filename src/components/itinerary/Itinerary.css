@@ -7,7 +7,7 @@
   padding: 20px;
   max-width: 1200px;
   font-family: "Poppins", sans-serif;
-  background-color: #f8f9fa;
+  background-color: #000000;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -46,7 +46,7 @@
 .day-container {
   margin-bottom: 20px;
   padding: 20px;
-  background-color: #fff;
+  background-color: #000000;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -68,13 +68,34 @@
 /* Accordion item styling */
 .accordion-button {
   font-size: 1.2rem;
-  background-color: #e9ecef;
+  background-color: #ffffff;
   color: #333;
   border-radius: 5px;
 }
 
+.accordion-header .item-number {
+  font-weight: bold;
+  margin-right: 10px;
+  background-color: black;
+  padding: 10px;
+  border-radius: 50%; /* Ensures the shape is a circle */
+  width: 30px; /* Set a fixed width */
+  height: 30px; /* Set a fixed height to match the width */
+  display: flex; /* Center the text inside the circle */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  color: white; /* Optional: makes the text more visible */
+}
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0%;
+  border-color: #fff;
+}
+
 .accordion-body {
-  background-color: #f8f9fa;
+  background-color: #ffffff;
 }
 
 .place-info,
@@ -127,4 +148,12 @@
 
 .login-container {
   margin-top: 20px;
+}
+
+.accordion-header {
+  font-size: 0.875rem;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
 }

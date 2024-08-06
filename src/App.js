@@ -10,6 +10,7 @@ import Header from "./components/header/Header";
 import Login from "./pages/login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Quote from "./components/quote/Quote";
+import ItinerariesList from "./components/itinerary/ItinerariesList";
 
 function App() {
   const [city, setCity] = useState("");
@@ -35,6 +36,7 @@ function App() {
         <Route path="/days" element={<DaysPicker city={city} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/quote" element={<Quote />} />
+        <Route path="/itinerary-list" element={<ItinerariesList />} />
 
         <Route
           path="attractions"

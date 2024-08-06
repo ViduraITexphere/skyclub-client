@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
 import Alert from "react-bootstrap/Alert";
+import { setItinerary } from "../features/itinerary/itinerarySlice";
 import "./Itinerary.css";
 import Login from "../../pages/login/Login";
-import Quote from "../quote/Quote";
 
 function Itinerary({ data }) {
-  const [itinerary, setItinerary] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(""); // State to handle success message
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to manage login status
+  const [itinerary, setItineraryState] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
 
   const googleId = localStorage.getItem("googleId");
   const userToken = localStorage.getItem("token");
@@ -21,13 +23,9 @@ function Itinerary({ data }) {
     }
   }, [googleId]);
 
-  if (!googleId) {
-    console.error("Google ID is missing from localStorage");
-  }
-
   const parameters = { ...data, googleId };
-  console.log("Itinerary parameters😀:", parameters);
-  console.log("Itinerary data🚀:", itinerary);
+  console.log("Itinerary parameters:", parameters);
+  console.log("Itinerary data:", itinerary);
 
   useEffect(() => {
     const backendUrl =
@@ -40,41 +38,19 @@ function Itinerary({ data }) {
       },
       body: JSON.stringify(parameters),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
-        console.log("Itinerary Response:", data);
-        setItinerary(data); // Set the itinerary state with the response data
+        setItineraryState(data);
       })
-      .catch((error) => {
-        console.error("Error fetching itinerary:", error);
-        // Handle error
-      });
+      .catch((error) => console.error("Error fetching itinerary:", error));
   }, [parameters]);
 
   const saveItinerary = () => {
-    console.log("User Token:❤️‍🔥", userToken);
+    if (!userToken || !googleId) return;
 
-    if (!userToken) {
-      console.error("User token is null or undefined");
-      return;
-    }
-
-    if (!googleId) {
-      console.error("googleId is undefined");
-      return;
-    }
-
-    const saveUrl = "https://skyclub-server-new.vercel.app/api/itinerary/save"; // Replace with your backend URL
-
-    const payload = {
-      googleId,
-      itinerary,
-    };
+    // const saveUrl = "https://skyclub-server-new.vercel.app/api/itinerary/save";
+    const saveUrl = "http://localhost:5000/api/itinerary/save";
+    const payload = { googleId, itinerary };
 
     fetch(saveUrl, {
       method: "POST",
@@ -84,20 +60,13 @@ function Itinerary({ data }) {
       },
       body: JSON.stringify(payload),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
+      .then((response) => response.json())
+      .then(() => {
+        setSuccessMessage("Your itinerary was successfully saved!");
+        // dispatch(setItinerary(itinerary)); // Save to Redux store
+        dispatch(setItinerary({ itinerary, googleId }));
       })
-      .then((data) => {
-        console.log("Itinerary saved:", data);
-        setSuccessMessage("Your itinerary was successfully saved!"); // Set success message
-      })
-      .catch((error) => {
-        console.error("Error saving itinerary:", error);
-        // Handle error
-      });
+      .catch((error) => console.error("Error saving itinerary:", error));
   };
 
   return (
@@ -201,8 +170,9 @@ function Itinerary({ data }) {
             Save Itinerary
           </Button>
         </div>
-        {/* Pass the itinerary data as a prop to the Quote component */}
-        {itinerary && <Quote itinerary={itinerary} />}
+        <Link to="/quote">
+          <Button variant="info">Request a Quote</Button>
+        </Link>
 
         {successMessage && (
           <Alert variant="success" className="mt-3">
