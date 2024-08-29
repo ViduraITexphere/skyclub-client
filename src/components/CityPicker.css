@@ -5,6 +5,7 @@
   font-family: "Poppins", sans-serif;
   position: relative; /* Added */
   display: inline-block; /* Added to ensure width consistency */
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 .city-picker-container h2 {
@@ -36,6 +37,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   margin: 20px;
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 .city-list li {
@@ -107,7 +109,7 @@
   text-align: center;
   font-size: 1.5rem;
   margin-bottom: 20px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'PangeaAfrikan', sans-serif;
   font-weight: 600;
 }
 .city-list-suggestion {
@@ -117,11 +119,13 @@
   flex-direction: row; /* Align items horizontally */
   align-items: center;
   justify-content: center;
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 .city-item {
   width: 200px; /* Adjust width as needed */
   margin-bottom: 20px; /* Optional margin between rows */
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 .city-item-inner {

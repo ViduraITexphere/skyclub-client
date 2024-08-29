@@ -11,6 +11,7 @@ import Login from "./pages/login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Quote from "./components/quote/Quote";
 import ItinerariesList from "./components/itinerary/ItinerariesList";
+import Account from "./pages/account/Account";
 
 function App() {
   const [city, setCity] = useState("");
@@ -36,7 +37,9 @@ function App() {
         <Route path="/days" element={<DaysPicker city={city} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/quote" element={<Quote />} />
+        <Route path="/quote/:itineraryId" element={<Quote />} />
         <Route path="/itinerary-list" element={<ItinerariesList />} />
+        <Route path="/account" element={<Account />} />
 
         <Route
           path="attractions"

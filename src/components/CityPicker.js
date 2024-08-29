@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import "./CityPicker.css";
-import ProgressBar from "react-bootstrap/ProgressBar";
+// import ProgressBar from "react-bootstrap/ProgressBar";
 import PopularActivities from "./PopularActivities";
 
 function CityPicker({ setCity }) {
@@ -62,7 +62,7 @@ function CityPicker({ setCity }) {
   return (
     <>
       <div className="city-picker-container">
-        <ProgressBar
+        {/* <ProgressBar
           animated
           now={33.33}
           style={{
@@ -74,7 +74,7 @@ function CityPicker({ setCity }) {
             borderRadius: "0",
             height: "8px",
           }}
-        />
+        /> */}
         <h2>Where do you want to go?</h2>
         <input
           className="city-picker-input"

@@ -9,7 +9,7 @@ function ItinerariesList() {
 
   useEffect(() => {
     if (googleId) {
-      fetch("http://localhost:5000/api/itinerary/getAll", {
+      fetch("https://skyclub-server-new.vercel.app/api/itinerary/getAll", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,12 +46,12 @@ function ItinerariesList() {
       <h1 className="itineraries-list-title">Your Itineraries</h1>
       <div className="itineraries-list">
         {itineraries.map((itinerary) => {
-          const firstDay = itinerary.itinerary[0];
-          const city =
-            firstDay.places.length > 0
-              ? firstDay.places[0].city
-              : "Unknown City";
-          const numberOfDays = itinerary.itinerary.length;
+          // Ensure itinerary and itinerary.itinerary are defined and non-empty
+          const firstDay = itinerary.itinerary && itinerary.itinerary.length > 0 ? itinerary.itinerary[0] : null;
+          const city = firstDay && firstDay.places && firstDay.places.length > 0
+            ? firstDay.places[0].city
+            : "Unknown City";
+          const numberOfDays = itinerary.itinerary ? itinerary.itinerary.length : 0;
 
           return (
             <div
@@ -60,7 +60,7 @@ function ItinerariesList() {
               onClick={() => handleItineraryClick(itinerary._id)}
             >
               <h2 className="itinerary-title">
-                Your Trip is {city} for {numberOfDays} days
+                Your Trip is in {city} for {numberOfDays} days
               </h2>
               <button className="view-quote-button">View Quote</button>
             </div>

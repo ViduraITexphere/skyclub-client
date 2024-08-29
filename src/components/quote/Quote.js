@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 import "./Quote.css";
 
 function Quote() {
   const [itinerary, setItinerary] = useState(null);
+  const [userDetails, setUserDetails] = useState({
+    name: "",
+    email: "",
+    message: "",
+    phone: "",
+    country: "",
+  });
+  const { itineraryId } = useParams(); // Extract itineraryId from URL
+  const token = localStorage.getItem("token");
   const googleId = localStorage.getItem("googleId");
 
   useEffect(() => {
-    if (googleId) {
-      fetch("http://localhost:5000/api/itinerary/get", {
-        method: "POST",
+    if (itineraryId && token) {
+      // fetch(`http://localhost:5000/api/itinerary/${itineraryId}`, {
+      fetch(`https://skyclub-server-new.vercel.app/api/itinerary/${itineraryId}`,{
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ googleId }),
       })
         .then((response) => {
           if (!response.ok) {
@@ -31,7 +40,67 @@ function Quote() {
           console.error("Error fetching itinerary:", error);
         });
     }
-  }, [googleId]);
+  }, [itineraryId, token]);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (itinerary && googleId) {
+      const combinedData = {
+        googleId,
+        itinerary: itinerary.itinerary,
+        userDetails,
+      };
+  
+      // fetch("http://localhost:5000/api/itinerary/saveWithDetails", {
+      fetch("https://skyclub-server-new.vercel.app/api/itinerary/saveWithDetails",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(combinedData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Data saved successfully:", data);
+          // Send email
+          return fetch("https://skyclub-server-new.vercel.app/api/sendEmail", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userDetails),
+          });
+        })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to send email");
+          }
+          return response.json();
+        })
+        .then((emailResponse) => {
+          console.log("Email sent successfully:", emailResponse);
+          // Optionally redirect or show success message
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  };
+  
 
   if (!itinerary || !itinerary.itinerary) {
     return <p>No itinerary details available.</p>;
@@ -109,26 +178,55 @@ function Quote() {
           <p className="user-info-text">
             <strong>Google ID:</strong> {googleId || "Not available"}
           </p>
-          <form className="quote-form">
+          <form className="quote-form" onSubmit={handleSubmit}>
             <label className="form-label">
               Name:
-              <input type="text" className="form-input" />
+              <input
+                type="text"
+                name="name"
+                value={userDetails.name}
+                onChange={handleInputChange}
+                className="form-input"
+              />
             </label>
             <label className="form-label">
               Email:
-              <input type="email" className="form-input" />
+              <input
+                type="email"
+                name="email"
+                value={userDetails.email}
+                onChange={handleInputChange}
+                className="form-input"
+              />
             </label>
             <label className="form-label">
               Message:
-              <textarea className="form-textarea"></textarea>
+              <textarea
+                name="message"
+                value={userDetails.message}
+                onChange={handleInputChange}
+                className="form-textarea"
+              ></textarea>
             </label>
             <label className="form-label">
               Phone:
-              <input type="tel" className="form-input" />
+              <input
+                type="tel"
+                name="phone"
+                value={userDetails.phone}
+                onChange={handleInputChange}
+                className="form-input"
+              />
             </label>
             <label className="form-label">
               Country of origin:
-              <input type="text" className="form-input" />
+              <input
+                type="text"
+                name="country"
+                value={userDetails.country}
+                onChange={handleInputChange}
+                className="form-input"
+              />
             </label>
             <button type="submit" className="form-submit">
               Submit

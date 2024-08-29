@@ -12,7 +12,7 @@ function Login() {
       const { credential } = credentialResponse;
       const response = await axios.post(
         // "https://skyclub-server-new.vercel.app/api/auth/google",
-        "http://localhost:5000/api/auth/google",
+        "https://skyclub-server-new.vercel.app/api/auth/google",
         { token: credential }
       );
 
