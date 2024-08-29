@@ -1,27 +1,22 @@
 /* General styles */
 .header {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
   padding: 15px 20px;
-  background-color: #f3f3f3;
+  background-color: #060030;
   position: sticky;
   top: 53px;
-  z-index: 1000;
-  transition: background-color 0.3s; /* Transition for smooth color change */
+  z-index: 10;
 }
 
-.header.scrolled {
-  background-color: #000000; /* Background color when scrolled */
-  opacity: 0.9; /* Opacity when scrolled */
-}
-
-.header.scrolled .header__nav ul li a {
-  color: #ffffff; /* Font color when scrolled */
-}
 
 .header__logo img {
-  height: 30px !important; /* Adjust the size as needed */
+  height: 100px !important; /* Adjust the size as needed */
+  position: fixed;
+  top: 4%;
+  left: 2%;
+  z-index: 1200;
 }
 
 .header__nav ul {
@@ -30,6 +25,7 @@
   gap: 15px;
   margin: 0;
   padding: 0;
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 .header__nav ul li {
@@ -38,10 +34,10 @@
 
 .header__nav ul li a {
   text-decoration: none;
-  color: #000000; /* Default font color */
+  color: #ffffff; /* Default font color */
   font-weight: 500 !important;
-  font-family: "Poppins", sans-serif;
-  font-size: 14px;
+  font-family: 'PangeaAfrikan', sans-serif;
+  font-size: 16px;
 }
 
 .header__nav .dropdown-content {
@@ -72,9 +68,9 @@
   top: 0;
   z-index: 1000;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #060030;
   padding: 10px 20px;
 }
 
@@ -108,7 +104,7 @@
 }
 
 .home-button {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -116,6 +112,7 @@
   font-size: 15px;
   font-weight: 500;
   margin-right: 20px;
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 .home-button:hover {
@@ -137,6 +134,7 @@
   font-size: 14px;
   font-weight: 500;
   border-radius: 20px;
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 .login:hover {
@@ -144,7 +142,7 @@
 }
 
 .header__logo img {
-  height: 50px;
+  height: 100px;
 }
 
 .header__nav ul {
@@ -160,7 +158,7 @@
 
 .header__nav ul li a {
   text-decoration: none;
-  color: #333; /* Default font color */
+  color: #ffffff; /* Default font color */
 }
 
 .header__nav ul li a:hover {
@@ -200,4 +198,19 @@
   height: 5px;
   background-color: #e0e0e0; /* Background color of the progress bar container */
   z-index: 999;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+.divider {
+  width: 62%; /* Set to your desired width */
+  height: 1px; /* Thickness of the divider */
+  background-color: #060030; /* Color of the divider */
+
 }

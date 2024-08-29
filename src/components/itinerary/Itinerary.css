@@ -4,10 +4,10 @@
   justify-content: space-between;
   align-items: flex-start;
   margin: 20px auto;
-  padding: 20px;
+  padding: 60px;
   max-width: 1200px;
   font-family: "Poppins", sans-serif;
-  background-color: #f8f9fa;
+  background-color: #000000;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -16,6 +16,10 @@
 .itinerary-content {
   flex: 2;
   margin-right: 20px;
+}
+.back-to-attraction{
+  background-color: transparent !important;
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 /* Right action section */
@@ -40,15 +44,16 @@
   color: #555;
   margin-bottom: 20px;
   text-align: center;
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 /* Day container styling */
 .day-container {
   margin-bottom: 20px;
-  padding: 20px;
-  background-color: #fff;
+  background-color: #000000;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 .day-title {
@@ -59,22 +64,45 @@
 }
 
 .section-title {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #444;
   margin-bottom: 10px;
+  font-family: 'PangeaAfrikan', sans-serif;
+  margin-top: 20px;
 }
 
 /* Accordion item styling */
 .accordion-button {
   font-size: 1.2rem;
-  background-color: #e9ecef;
+  background-color: #ffffff;
   color: #333;
   border-radius: 5px;
 }
 
+.accordion-header .item-number {
+  font-weight: bold;
+  margin-right: 10px;
+  background-color: black;
+  padding: 10px;
+  border-radius: 50%; /* Ensures the shape is a circle */
+  width: 30px; /* Set a fixed width */
+  height: 30px; /* Set a fixed height to match the width */
+  display: flex; /* Center the text inside the circle */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  color: white; /* Optional: makes the text more visible */
+}
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0%;
+  border-color: #fff;
+}
+
 .accordion-body {
-  background-color: #f8f9fa;
+  background-color: #ffffff;
 }
 
 .place-info,
@@ -100,6 +128,7 @@
   margin-top: 10px;
   display: flex;
   justify-content: center;
+  font-family: 'PangeaAfrikan', sans-serif;
 }
 
 .back-button-container button,
@@ -127,4 +156,42 @@
 
 .login-container {
   margin-top: 20px;
+}
+
+.accordion-header {
+  font-size: 0.875rem;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+
+
+/**carousel**/
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 130px;
+  margin-bottom: 20px;
+  border: 1px solid;
+  border-radius: 10px;
+  font-family: 'PangeaAfrikan', sans-serif;
+}
+
+.hotel-card{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.itinerary-list-button-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+.itinerary-list-button-container button{
+  background-color: transparent;
+  border: none;
 }

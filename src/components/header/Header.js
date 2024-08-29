@@ -7,6 +7,8 @@ import {
   FaUserCircle,
   FaTiktok,
   FaYoutube,
+  FaCaretDown,
+  FaComments,
 } from "react-icons/fa"; // Import icons from react-icons
 import "./Header.css"; // Import the CSS file
 import { FaXTwitter } from "react-icons/fa6";
@@ -41,7 +43,7 @@ function Header() {
   return (
     <>
       <div className="topnav" id="myTopnav">
-        <div className="social-links">
+        {/* <div className="social-links">
           <a
             href="https://facebook.com"
             target="_blank"
@@ -69,16 +71,42 @@ function Header() {
           >
             <FaXTwitter />
           </a>
-        </div>
+        </div> */}
         <div className="nav-buttons">
-          <a className="home-button" href="https://skytravelclub.com/new/">
+       
+          <a className="home-button" href="https://skytravelclub.com/">
             <FaHome /> Home
           </a>
+          {/* select country dropdown */}
+          <div className="dropdown">
+            <a className="home-button">
+          Select Country <FaCaretDown />
+            </a>
+            <div className="dropdown-content">
+              <a href="https://skytravelclub.com/new/australia/">Sri Lanka</a>
+              <a href="https://skytravelclub.com/new/australia/">Australia</a>
+              <a href="https://skytravelclub.com/new/india/">India</a>
+              <a href="https://skytravelclub.com/new/italy/">Italy</a>
+              <a href="https://skytravelclub.com/new/thailand/">Thailand</a>
+              <a href="https://skytravelclub.com/new/usa/">USA</a>
+            </div>
+          </div>
+
+          <a className="home-button" href="https://skytravelclub.com/new/">
+            <FaComments/> Sky Chat
+          </a>
+          <a className="home-button" href="https://skytravelclub.com/new/">
+           Blog
+          </a>
+
           <button className="login">
             <FaUserCircle /> Login
           </button>
         </div>
       </div>
+      {/* divider */}
+      <div className="divider"></div>
+      {/* header */}
       <header className="header">
         <div className="header__logo">
           <img src="/images/logo.png" alt="Logo" />

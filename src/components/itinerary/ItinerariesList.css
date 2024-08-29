@@ -1,0 +1,81 @@
+.itineraries-list-container {
+  padding: 20px;
+}
+
+.itineraries-list-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.itineraries-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.itinerary-item {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.itinerary-item:hover {
+  background-color: #f5f5f5;
+}
+
+.itineraries-list-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.itineraries-list-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #343a40;
+  text-align: center;
+}
+
+.itineraries-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.itinerary-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.itinerary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.itinerary-title {
+  font-size: 1.2rem;
+  color: #495057;
+  margin-bottom: 10px;
+}
+
+.view-quote-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.view-quote-button:hover {
+  background-color: #0056b3;
+}

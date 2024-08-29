@@ -1,80 +1,98 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
+import Carousel from "react-bootstrap/Carousel";
 import Alert from "react-bootstrap/Alert";
+import { setItinerary } from "../features/itinerary/itinerarySlice";
 import "./Itinerary.css";
 import Login from "../../pages/login/Login";
-import Quote from "../quote/Quote";
 
 function Itinerary({ data }) {
-  const [itinerary, setItinerary] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(""); // State to handle success message
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to manage login status
+  const [itinerary, setItineraryState] = useState([]);
+  const [hotels, setHotels] = useState([]);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("googleId"));
+  const [isSaved, setIsSaved] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const fetchedOnce = useRef(false);
 
   const googleId = localStorage.getItem("googleId");
   const userToken = localStorage.getItem("token");
-
-  useEffect(() => {
-    if (googleId) {
-      setIsLoggedIn(true);
-    }
-  }, [googleId]);
-
-  if (!googleId) {
-    console.error("Google ID is missing from localStorage");
-  }
-
   const parameters = { ...data, googleId };
-  console.log("Itinerary parameters😀:", parameters);
-  console.log("Itinerary data🚀:", itinerary);
 
+  const backendUrl = "https://skyclub-server-new.vercel.app/api/places/itinerary";
+
+  // Effect to fetch itinerary data
   useEffect(() => {
-    const backendUrl =
-      "https://skyclub-server-new.vercel.app/api/places/itinerary";
-
-    fetch(backendUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(parameters),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+    const fetchItinerary = async () => {
+      try {
+        const response = await fetch(backendUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(parameters),
+        });
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setItineraryState(data);
+        } else {
+          console.error("Unexpected data format:", data);
+          setItineraryState([]);
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Itinerary Response:", data);
-        setItinerary(data); // Set the itinerary state with the response data
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching itinerary:", error);
-        // Handle error
-      });
+      }
+    };
+
+    fetchItinerary();
   }, [parameters]);
 
-  const saveItinerary = () => {
-    console.log("User Token:❤️‍🔥", userToken);
+  // Effect to fetch hotels data
+  useEffect(() => {
+    if (!parameters.city) return;
 
-    if (!userToken) {
-      console.error("User token is null or undefined");
-      return;
-    }
-
-    if (!googleId) {
-      console.error("googleId is undefined");
-      return;
-    }
-
-    const saveUrl = "https://skyclub-server-new.vercel.app/api/itinerary/save"; // Replace with your backend URL
-
-    const payload = {
-      googleId,
-      itinerary,
+    const fetchHotels = async () => {
+      const hotelUrl = `https://skyclub-server-new.vercel.app/api/places/hotels/${parameters.city}`;
+      
+      try {
+        const response = await fetch(hotelUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setHotels(data);
+        } else {
+          console.error("Unexpected data format:", data);
+          setHotels([]);
+        }
+      } catch (error) {
+        console.error("Error fetching hotels:", error);
+      }
     };
+
+    fetchHotels();
+  }, [parameters.city]);
+
+  // Function to handle hotel selection
+  const handleSelectHotel = (hotel) => {
+    console.log(`Selected hotel: ${hotel.name}`);
+    // You can handle the hotel selection logic here, e.g., displaying a confirmation message
+  };
+
+  // Function to save itinerary
+  const saveItinerary = () => {
+    if (!userToken || !googleId) return;
+
+    const saveUrl = "https://skyclub-server-new.vercel.app/api/itinerary/save";
+    const payload = { googleId, itinerary };
 
     fetch(saveUrl, {
       method: "POST",
@@ -84,36 +102,80 @@ function Itinerary({ data }) {
       },
       body: JSON.stringify(payload),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
+      .then((response) => response.json())
+      .then(() => {
+        setSuccessMessage("Your itinerary was successfully saved!");
+        setIsSaved(true);
+        dispatch(setItinerary({ itinerary, googleId }));
+
+        setTimeout(() => {
+          navigate("/itinerary-list");
+        }, 2000);
       })
-      .then((data) => {
-        console.log("Itinerary saved:", data);
-        setSuccessMessage("Your itinerary was successfully saved!"); // Set success message
-      })
-      .catch((error) => {
-        console.error("Error saving itinerary:", error);
-        // Handle error
-      });
+      .catch((error) => console.error("Error saving itinerary:", error));
   };
+
+  // Effect to handle login state
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsLoggedIn(!!localStorage.getItem("googleId"));
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   return (
     <div className="itinerary-container">
       <div className="itinerary-content">
-        <h1 className="itinerary-title">Your Itinerary</h1>
-        <h3 className="itinerary-subtitle">
+        <h3 className="itinerary-subtitle text-light text-start">
           Your trip to {parameters.city} for {parameters.totalDays} days with
           your partner
         </h3>
-        {itinerary ? (
+        <div className="hotels-container text-light text-start">
+          <h3 className="section-title text-light">Places to stay in {parameters.city}</h3>
+          {Array.isArray(hotels) && hotels.length > 0 ? (
+            <Carousel>
+              {hotels.map((hotel, index) => (
+                <Carousel.Item key={index}>
+                  <div className="hotel-card">
+                    <h4 className="hotel-name">{hotel.name}</h4>
+                    <p className="hotel-description">{hotel.description}</p>
+                    <p className="hotel-rating">
+                      <strong>Rating:</strong> {hotel.rating}
+                    </p>
+                    {hotel.image && (
+                      <div className="hotel-image">
+                        {/* <img
+                          src={`/images/${hotel.image}`}
+                          alt={hotel.name}
+                          className="d-block w-100 img-fluid rounded"
+                        /> */}
+                      </div>
+                    )}
+                    <Button
+                      variant="primary"
+                      onClick={() => handleSelectHotel(hotel)}
+                    >
+                      Select Hotel
+                    </Button>
+                  </div>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          ) : (
+            <p>No hotels available for this city.</p>
+          )}
+        </div>
+        {Array.isArray(itinerary) && itinerary.length > 0 ? (
           itinerary.map((day, index) => (
-            <div key={index} className="day-container">
-              <h2 className="day-title">Day {day.day}</h2>
-              <div className="places-container">
-                <h3 className="section-title">Places to Visit</h3>
+            <div key={index} className="day-container text-light">
+              <h2 className="day-title text-light text-start">Day {day.day}</h2>
+              <div className="places-container text-light text-start">
+                <h3 className="section-title text-light">Places to Visit</h3>
                 <Accordion defaultActiveKey={index === 0 ? "0" : null}>
                   {day.places.map((place, placeIndex) => (
                     <Accordion.Item
@@ -146,7 +208,7 @@ function Itinerary({ data }) {
                 </Accordion>
               </div>
               <div className="restaurants-container">
-                <h3 className="section-title">Restaurants</h3>
+                <h3 className="section-title text-light text-start">Restaurants</h3>
                 <Accordion defaultActiveKey={index === 0 ? "0" : null}>
                   {day.restaurants.map((restaurant, restaurantIndex) => (
                     <Accordion.Item
@@ -183,26 +245,36 @@ function Itinerary({ data }) {
             </div>
           ))
         ) : (
-          <p>Loading itinerary...</p>
+          <p>No itinerary data available.</p>
         )}
       </div>
+
       <div className="action-container">
         <div className="back-button-container">
           <Link to="/days">
-            <Button variant="primary">Back to Attractions</Button>
+            <Button className="back-to-attraction" variant="primary">Back to Attractions</Button>
           </Link>
         </div>
         <div className="save-button-container">
-          <Button
-            variant="success"
-            onClick={saveItinerary}
-            disabled={!userToken || !googleId}
-          >
-            Save Itinerary
-          </Button>
+          {isSaved ? (
+            <Link to="/itineraries">
+              <Button variant="info">See Itineraries</Button>
+            </Link>
+          ) : (
+            <Button
+              variant="success"
+              onClick={saveItinerary}
+              disabled={!userToken || !googleId}
+            >
+              Save Itinerary
+            </Button>
+          )}
         </div>
-        {/* Pass the itinerary data as a prop to the Quote component */}
-        {itinerary && <Quote itinerary={itinerary} />}
+        <div className="itinerary-list-button-container">
+        <Link to="/itinerary-list">
+          <Button variant="secondary">View Saved Itineraries</Button>
+        </Link>
+        </div>
 
         {successMessage && (
           <Alert variant="success" className="mt-3">
