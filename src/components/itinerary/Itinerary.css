@@ -5,11 +5,10 @@
   align-items: flex-start;
   margin: 20px auto;
   padding: 60px;
-  max-width: 1200px;
-  font-family: "Poppins", sans-serif;
-  background-color: #000000;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1400px;
+  background-color: #ffffff;
+  font-family: 'PangeaAfrikan', sans-serif;
+  gap: 40px;
 }
 
 /* Left content section */
@@ -40,9 +39,10 @@
 }
 
 .itinerary-subtitle {
-  font-size: 1.5rem;
-  color: #555;
+  font-size: 1.8rem;
+  color: #000000;
   margin-bottom: 20px;
+  font-weight: 600;
   text-align: center;
   font-family: 'PangeaAfrikan', sans-serif;
 }
@@ -50,9 +50,7 @@
 /* Day container styling */
 .day-container {
   margin-bottom: 20px;
-  background-color: #000000;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: 'PangeaAfrikan', sans-serif;
 }
 
@@ -64,9 +62,9 @@
 }
 
 .section-title {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #444;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #000300;
   margin-bottom: 10px;
   font-family: 'PangeaAfrikan', sans-serif;
   margin-top: 20px;
@@ -77,7 +75,7 @@
   font-size: 1.2rem;
   background-color: #ffffff;
   color: #333;
-  border-radius: 5px;
+ 
 }
 
 .accordion-header .item-number {
@@ -94,12 +92,38 @@
   color: white; /* Optional: makes the text more visible */
 }
 .accordion-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 0%;
-  border-color: #fff;
+  border: none;
+  border-bottom: 1px solid #dfdfdf;
+  padding-bottom: 10px;
 }
+.accordion-header .item-name{
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000300;
+  margin-bottom: 10px;
+  font-family: 'PangeaAfrikan', sans-serif;
+}
+
+.accordion-item {
+  border: none; /* Remove any borders around the accordion item */
+  padding: 0;
+}
+.accordion-button:not(.collapsed) {
+  background-color: transparent;
+  border: none;
+  border-color: transparent;
+}
+.accordion-item:not(:last-child) .accordion-header {
+  margin-bottom: 10px; /* Add some space between accordion headers */
+}
+.accordion-item:first-of-type>.accordion-header .accordion-button {
+  border: none;
+}
+.place-header{
+  border-bottom: 1px solid #ff0000;
+}
+
+
 
 .accordion-body {
   background-color: #ffffff;
@@ -121,7 +145,7 @@
 }
 
 /* Button and login container styling */
-.back-button-container,
+/* .back-button-container,
 .save-button-container,
 .login-container {
   width: 100%;
@@ -129,6 +153,7 @@
   display: flex;
   justify-content: center;
   font-family: 'PangeaAfrikan', sans-serif;
+  
 }
 
 .back-button-container button,
@@ -138,16 +163,42 @@
   font-size: 1rem;
   border-radius: 5px;
   border: none;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
 }
 
 .back-button-container button {
   background-color: #007bff;
+  color: black;
 }
 
 .save-button-container button {
-  background-color: #28a745;
+  background-color: #fd7e14;
+} */
+
+.action-btn{
+  background-color: #fd7e14;
+  width: 300px;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'PangeaAfrikan', sans-serif;
+}
+.action-btn:hover{
+  background-color: #ff9e4f;
+}
+
+.itinerary-list-button-container button{
+  background-color: transparent;
+  text-decoration: underline;
+  color: #000000;
+}
+.itinerary-list-button-container button:hover{
+  color: #fd7e14;
+  background-color: transparent;
 }
 
 .save-button-container button:disabled {
@@ -161,8 +212,6 @@
 .accordion-header {
   font-size: 0.875rem;
   background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
   padding: 10px;
 }
 
@@ -175,7 +224,7 @@
   overflow: hidden;
   padding: 40px 130px;
   margin-bottom: 20px;
-  border: 1px solid;
+  border: 1px solid #dfdfdf;
   border-radius: 10px;
   font-family: 'PangeaAfrikan', sans-serif;
 }
@@ -184,14 +233,89 @@
   display: flex;
   flex-direction: column;
   text-align: left;
+  border: 1px solid #dfdfdf;
+  padding: 30px;
+  border-radius: 10px;
+  height: 300px;
 }
-.itinerary-list-button-container{
-  display: flex;
-  justify-content: center;
+
+.des p{
+  font-size: 1rem;
+  font-weight: 200;
+  color: #000300;
+  margin-bottom: 10px;
+  font-family: 'PangeaAfrikan', sans-serif;
   margin-top: 20px;
-  width: 100%;
+  text-align: left;
 }
-.itinerary-list-button-container button{
-  background-color: transparent;
-  border: none;
+.des{
+  border-bottom: 1px solid #dfdfdf;
+  padding: 10px 0;
 }
+
+.swiper-container{
+  max-width: 800px;
+  height: 40vh;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  font-family: 'PangeaAfrikan', sans-serif;
+}
+
+/* SwiperStyles.css */
+
+
+.swiper-button-next::after, .swiper-button-prev::after {
+  font-size: 20px; /* Adjust font size of the arrows */
+}
+
+.swiper-button-prev {
+  background-image: url("https://cdn-icons-png.flaticon.com/128/93/93634.png") !important;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  padding-top: 200px;
+  }
+  
+  .swiper-button-next {
+  background-image: url("https://cdn-icons-png.flaticon.com/128/2767/2767192.png") !important;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  padding-top: 200px;
+  }
+
+  .swiper-button-next::after {
+    display: none;
+    }
+    
+    .swiper-button-prev::after {
+    display: none;
+    }
+
+    .action-container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid #dfdfdf;
+      border-radius: 10px;
+      padding: 20px;
+      gap: 10px;
+      height: fit-content;
+    }
+    .loading-anim{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
+      flex-direction: column;
+    }
+
+    .err-msg{
+      font-family: 'PangeaAfrikan', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
+    }

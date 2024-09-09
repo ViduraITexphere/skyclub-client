@@ -35,6 +35,8 @@ function useQuery() {
 function AttractionPicker({ onSubmit }) {
   const [city, setCity] = useState("");
   const [totalDays, setTotalDays] = useState(0);
+  const [peopleCount, setPeopleCount] = useState(1);
+  const [peopleNames, setPeopleNames] = useState("Solo");
   const [selectedAttractions, setSelectedAttractions] = useState([]);
   const [itinerary, setItinerary] = useState(null); // State to store itinerary response
   const query = useQuery();
@@ -42,8 +44,12 @@ function AttractionPicker({ onSubmit }) {
   useEffect(() => {
     const cityParam = query.get("city") || "Dambulla";
     const totalDaysParam = parseInt(query.get("totalDays"), 10) || 3;
+    const peopleCountParam = parseInt(query.get("peopleCount"), 10) || 1;
+    const peopleNamesParam = query.get("peopleName") || "Solo";
     setCity(cityParam);
     setTotalDays(totalDaysParam);
+    setPeopleCount(peopleCountParam);
+    setPeopleNames(peopleNamesParam);
   }, [query]);
 
   const toggleAttraction = (attraction) => {
@@ -65,36 +71,12 @@ function AttractionPicker({ onSubmit }) {
       city: city,
       totalDays: totalDays,
       attractions: selectedAttractions,
+      peopleCount: peopleCount,
+      peopleNames: peopleNames,
     };
 
     console.log("Final Object:", dataToSend);
     onSubmit(dataToSend);
-
-    // // Replace with actual backend endpoint URL
-    // const backendUrl = "http://localhost:5000/api/places/itinerary";
-
-    // fetch(backendUrl, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(dataToSend),
-    // })
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       throw new Error("Network response was not ok");
-    //     }
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     console.log("Itinerary Response:", data);
-    //     setItinerary(data); // Set the itinerary state with the response data
-    //     // Handle itinerary data as needed (e.g., redirect to itinerary page)
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching itinerary:", error);
-    //     // Handle error
-    //   });
   };
 
   return (
@@ -104,12 +86,12 @@ function AttractionPicker({ onSubmit }) {
         now={100}
         style={{
           position: "fixed",
-          top: "110px",
+          top: "0",
           left: "0",
           width: "100%",
           zIndex: "10",
           borderRadius: "0",
-          height: "8px",
+          height: "5px",
         }}
       />
       <ImageStrip />
@@ -123,16 +105,14 @@ function AttractionPicker({ onSubmit }) {
           style={{
             fontSize: "1.7rem",
             fontWeight: "bold",
-            fontFamily: "Poppins",
           }}
         >
           Select Attractions for {city}
         </h1>
         <p
           style={{
-            fontSize: "14px",
+            fontSize: "18px",
             fontWeight: "400",
-            fontFamily: "Poppins",
           }}
         >
           Choose as many as you’d like.

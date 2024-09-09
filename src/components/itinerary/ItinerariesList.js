@@ -38,34 +38,56 @@ function ItinerariesList() {
   };
 
   if (itineraries.length === 0) {
-    return <p>No itineraries available.</p>;
+    return (
+      <div className="err-msg">
+        <p>No itineraries available.</p>
+      </div>
+    );
   }
 
   return (
-    <div className="itineraries-list-container">
+    <div className="container-wrapper">
       <h1 className="itineraries-list-title">Your Itineraries</h1>
-      <div className="itineraries-list">
-        {itineraries.map((itinerary) => {
-          // Ensure itinerary and itinerary.itinerary are defined and non-empty
-          const firstDay = itinerary.itinerary && itinerary.itinerary.length > 0 ? itinerary.itinerary[0] : null;
-          const city = firstDay && firstDay.places && firstDay.places.length > 0
-            ? firstDay.places[0].city
-            : "Unknown City";
-          const numberOfDays = itinerary.itinerary ? itinerary.itinerary.length : 0;
+      <p>
+        Here are the itineraries you have saved. Click on "View Quote" to see
+        the details.
+      </p>
+      <div className="itineraries-list-container">
+        <table className="itineraries-table">
+          <tbody>
+            {itineraries.map((itinerary) => {
+              const firstDay =
+                itinerary.itinerary && itinerary.itinerary.length > 0
+                  ? itinerary.itinerary[0]
+                  : null;
+              const city =
+                firstDay && firstDay.places && firstDay.places.length > 0
+                  ? firstDay.places[0].city
+                  : "Unknown City";
+              const numberOfDays = itinerary.itinerary
+                ? itinerary.itinerary.length
+                : 0;
 
-          return (
-            <div
-              key={itinerary._id}
-              className="itinerary-card"
-              onClick={() => handleItineraryClick(itinerary._id)}
-            >
-              <h2 className="itinerary-title">
-                Your Trip is in {city} for {numberOfDays} days
-              </h2>
-              <button className="view-quote-button">View Quote</button>
-            </div>
-          );
-        })}
+              return (
+                <tr key={itinerary._id} className="itinerary-row">
+                  <td className="itinerary-text">
+                    <h2 className="itinerary-title">
+                      Your Trip is in {city} for {numberOfDays} days
+                    </h2>
+                  </td>
+                  <td className="itinerary-button">
+                    <button
+                      className="view-quote-button"
+                      onClick={() => handleItineraryClick(itinerary._id)}
+                    >
+                      View Quote
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );

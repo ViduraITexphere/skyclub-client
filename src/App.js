@@ -7,11 +7,13 @@ import Itinerary from "./components/itinerary/Itinerary";
 
 import "./App.css";
 import Header from "./components/header/Header";
-import Login from "./pages/login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Quote from "./components/quote/Quote";
 import ItinerariesList from "./components/itinerary/ItinerariesList";
 import Account from "./pages/account/Account";
+import People from "./components/People";
+import Login from "./components/Auth/login/Login";
+import AuthCheck from "./components/Auth/AuthCheck";
 
 function App() {
   const [city, setCity] = useState("");
@@ -25,6 +27,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <AuthCheck />
       <Routes>
         <Route
           path="/"
@@ -35,6 +38,7 @@ function App() {
           }
         />
         <Route path="/days" element={<DaysPicker city={city} />} />
+        <Route path="/People" element={<People />} />
         <Route path="/login" element={<Login />} />
         <Route path="/quote" element={<Quote />} />
         <Route path="/quote/:itineraryId" element={<Quote />} />

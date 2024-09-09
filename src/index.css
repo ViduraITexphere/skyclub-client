@@ -10,6 +10,18 @@
   font-weight: 200;
   font-style: normal;
 }
+@font-face {
+  font-family: 'PangeaAfrikan';
+  src: url('./assets/fonts/PangeaAfrikanTrial-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PangeaAfrikan';
+  src: url('./assets/fonts/PangeaAfrikanTrial-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
 body {
   font-family: 'MyCustomFont', sans-serif;
 }

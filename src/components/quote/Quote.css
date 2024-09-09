@@ -1,12 +1,31 @@
+body{
+  margin: 0;
+  padding: 0;
+}
 .quote-container {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  align-items: center;
+  text-align: left;
+  background-color: #f2f4f3;
+  padding: 50px 0;
+
+}
+.quote-container-loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 }
 
 .quote-content {
   display: flex;
   justify-content: space-between;
+  width: 60vw;
+  gap: 20px;
+  background-color: #ffffff;
+  padding: 40px;
+  border: 1px solid #ccc;
 }
 
 .itinerary-section {
@@ -16,13 +35,24 @@
 
 .user-info-section {
   flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  height:fit-content;
 }
 
-.itinerary-title {
-  font-size: 24px;
-  margin-bottom: 20px;
+.header-title{
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 0;
 }
-
+.quote-header{
+  width: 60vw;
+  display: flex;
+  text-align: left;
+  align-items: flex-start;
+  flex-direction: column;
+}
 .day-container {
   margin-bottom: 20px;
 }
@@ -63,6 +93,7 @@
 .quote-form {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
 .form-label {
@@ -74,11 +105,13 @@
   width: 100%;
   padding: 8px;
   margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 .form-submit {
   padding: 10px 15px;
-  background-color: #007bff;
+  background-color: #fd7e14;
   color: white;
   border: none;
   border-radius: 5px;
@@ -87,5 +120,10 @@
 }
 
 .form-submit:hover {
-  background-color: #0056b3;
+  background-color: #ff9e4f;
+}
+
+.accordion-button:focus {
+  outline: none;
+  box-shadow: none;
 }

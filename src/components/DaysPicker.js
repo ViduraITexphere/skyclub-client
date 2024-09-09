@@ -53,7 +53,7 @@ export function DaysPicker({ city }) {
   return (
     <Container
       fluid
-      className="main d-flex align-items-center justify-content-center vh-100"
+      className="main d-flex align-items-center justify-content-center mt-5"
     >
       <div>
         <ProgressBar
@@ -61,12 +61,12 @@ export function DaysPicker({ city }) {
           now={66.66}
           style={{
             position: "fixed",
-            top: "110px",
+            top: "0",
             left: "0",
             width: "100%",
             zIndex: "10",
             borderRadius: "0",
-            height: "8px",
+            height: "5px",
           }}
         />
         <h1
@@ -74,7 +74,6 @@ export function DaysPicker({ city }) {
           style={{
             fontSize: "1.7rem",
             fontWeight: "bold",
-            fontFamily: "Poppins",
           }}
         >
           When do you want to go?
@@ -82,10 +81,12 @@ export function DaysPicker({ city }) {
         <Row className="justify-content-center wrapper">
           <Col xs="auto">
             <DayPicker
+              numberOfMonths={3}
               mode="multiple"
               selected={selected}
               onSelect={handleSelect}
               disabled={{ before: today }} // Disable dates before today
+              fontSize="1.2rem"
             />
           </Col>
         </Row>
@@ -96,14 +97,12 @@ export function DaysPicker({ city }) {
                 style={{
                   fontSize: "1.2rem",
                   fontWeight: "bold",
-                  fontFamily: "Poppins",
                 }}
               >
                 <div
                   style={{
                     fontSize: "1rem",
                     fontWeight: "bold",
-                    fontFamily: "Poppins",
                     display: "inline-block",
                     color: "#000",
                     padding: "5px 10px",
@@ -119,7 +118,8 @@ export function DaysPicker({ city }) {
               </p>
               <Link
                 to={{
-                  pathname: "/attractions",
+                  // pathname: "/attractions",
+                  pathname: "/people",
                   search: `?city=${city}&totalDays=${totalDays}`,
                 }}
               >

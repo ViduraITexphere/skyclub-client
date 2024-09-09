@@ -12,6 +12,8 @@ import {
 } from "react-icons/fa"; // Import icons from react-icons
 import "./Header.css"; // Import the CSS file
 import { FaXTwitter } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import ProfileMenu from "../ProfileMenu";
 
 function Header() {
   useEffect(() => {
@@ -42,8 +44,7 @@ function Header() {
 
   return (
     <>
-      <div className="topnav" id="myTopnav">
-        {/* <div className="social-links">
+      {/* <div className="social-links">
           <a
             href="https://facebook.com"
             target="_blank"
@@ -72,116 +73,130 @@ function Header() {
             <FaXTwitter />
           </a>
         </div> */}
-        <div className="nav-buttons">
-       
-          <a className="home-button" href="https://skytravelclub.com/">
-            <FaHome /> Home
-          </a>
-          {/* select country dropdown */}
-          <div className="dropdown">
-            <a className="home-button">
-          Select Country <FaCaretDown />
-            </a>
-            <div className="dropdown-content">
-              <a href="https://skytravelclub.com/new/australia/">Sri Lanka</a>
-              <a href="https://skytravelclub.com/new/australia/">Australia</a>
-              <a href="https://skytravelclub.com/new/india/">India</a>
-              <a href="https://skytravelclub.com/new/italy/">Italy</a>
-              <a href="https://skytravelclub.com/new/thailand/">Thailand</a>
-              <a href="https://skytravelclub.com/new/usa/">USA</a>
-            </div>
-          </div>
 
-          <a className="home-button" href="https://skytravelclub.com/new/">
-            <FaComments/> Sky Chat
-          </a>
-          <a className="home-button" href="https://skytravelclub.com/new/">
-           Blog
-          </a>
-
-          <button className="login">
-            <FaUserCircle /> Login
-          </button>
-        </div>
-      </div>
       {/* divider */}
-      <div className="divider"></div>
       {/* header */}
       <header className="header">
-        <div className="header__logo">
-          <img src="/images/logo.png" alt="Logo" />
-        </div>
-        <nav className="header__nav">
-          <ul>
-            <li className="dropdown">
-              <a href="#communities">Communities</a>
-              <ul className="dropdown-content">
-                <li>
-                  <a href="https://skytravelclub.com/new/the-premium-club/">
-                    The Premium Club
-                  </a>
-                </li>
-                <li>
-                  <a href="https://skytravelclub.com/new/the-nomads-club/">
-                    The Nomads Club
-                  </a>
-                </li>
-                <li>
-                  <a href="https://skytravelclub.com/new/the-global-club/">
-                    The Global Club
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li className="dropdown">
-              <a href="#trips">Trips</a>
-              <ul className="dropdown-content">
-                <li>
-                  <a href="https://skytravelclub.com/new/create-trip-with-ai/">
-                    Create trip with AI
-                  </a>
-                </li>
-                <li>
-                  <a href="https://skytravelclub.com/new/tailor-made-tours/">
-                    Tailor made tours
-                  </a>
-                </li>
-                <li>
-                  <a href="https://skytravelclub.com/new/most-popular/">
-                    Most popular
-                  </a>
-                </li>
-                <li>
-                  <a href="https://skytravelclub.com/new/budget-packages/">
-                    Budget packages
-                  </a>
-                </li>
-                <li>
-                  <a href="https://skytravelclub.com/new/group-trips/">
-                    Group trips
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#bucket-list">Bucket List</a>
-            </li>
-            <li>
-              <a href="https://skytravelclub.com/new/latest-offers/">
-                Latest Offers
+        <div className="topnav" id="myTopnav">
+          <div className="nav-buttons">
+            <a className="home-button" href="https://skytravelclub.com/">
+              <FaHome /> Home
+            </a>
+            {/* select country dropdown */}
+            <div className="dropdown">
+              <a className="home-button">
+                Select Country <FaCaretDown />
               </a>
-            </li>
-            <li>
-              <a href="#the-club">The Club</a>
-            </li>
-            <li>
-              <a href="https://skytravelclub.com/new/blog/">Blog</a>
-            </li>
-            <li>
-              <a href="https://skytravelclub.com/new/contact-us/">Contact Us</a>
-            </li>
-          </ul>
-        </nav>
+              <div className="dropdown-content">
+                <a href="https://skytravelclub.com/sri-lanka/">Sri Lanka</a>
+                <a href="#">United Kingdom</a>
+                <a href="#">Australia</a>
+                <a href="#">Dubai</a>
+                <a href="#">France</a>
+              </div>
+            </div>
+
+            <a
+              className="home-button"
+              href="https://skytravelclub.com/sky-chat/"
+            >
+              <FaComments /> Sky Chat
+            </a>
+            <a
+              className="home-button"
+              href="https://skytravelclub.com/new/blog/"
+            >
+              Blog
+            </a>
+
+            {/* <a href="https://skytravelclub.com/new/login/">
+              <button className="login">
+                <FaUserCircle /> Login
+              </button>
+            </a> */}
+            <div className="profile-menu">
+              <ProfileMenu />
+            </div>
+
+            {/* <Link to="/login">
+              <button className="login">
+                <FaUserCircle /> Login
+              </button>
+            </Link> */}
+          </div>
+        </div>
+
+        <div className="header__bootom">
+          <div className="header__logo">
+            <img src="/images/logo.png" alt="Logo" />
+          </div>
+          <nav className="header__nav">
+            <ul>
+              <li>
+                <a href="https://skytravelclub.com/the-club/">Sky Club</a>
+              </li>
+              <li>
+                <a href="https://skytravelclub.com/membership/">Membership</a>
+              </li>
+              <li className="dropdown">
+                <a href="#trips">Tours</a> <FaCaretDown />
+                <ul className="dropdown-content">
+                  <li>
+                    <a href="https://skytravelclub.com/new/create-trip-with-ai/">
+                      Create trip with AI
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://skytravelclub.com/new/tailor-made-tours/">
+                      Tailor made tours
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://skytravelclub.com/new/most-popular/">
+                      Most popular
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://skytravelclub.com/new/destinations/">
+                      International Tours
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://skytravelclub.com/solo-travelers/">
+                      Solo Travelers
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="https://skytravelclub.com/hotels/">Hotels</a>
+              </li>
+              <li>
+                <a href="https://skytravelclub.com/gift-card/">
+                  Sky Gift Cards
+                </a>
+              </li>
+              <li>
+                <a href="https://skytravelclub.com/sky-weddings/">
+                  Sky Weddings
+                </a>
+              </li>
+              <li>
+                <a href="https://skytravelclub.com/bucket-list/">Bucket List</a>
+              </li>
+              <li>
+                <a href="https://skytravelclub.com/latest-offers/">
+                  Latest Offers
+                </a>
+              </li>
+              <li>
+                <a href="https://skytravelclub.com/new/contact-us/">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
       <div className="progress-container">
         <div className="progress-bar"></div>
