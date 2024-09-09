@@ -74,7 +74,7 @@ function Itinerary({ data }) {
     if (!parameters.city) return;
 
     const fetchHotels = async () => {
-      const hotelUrl = `http://localhost:5000/api/places/hotels/${parameters.city}`;
+      const hotelUrl = `https://skyclub-server-new.vercel.app/api/places/hotels/${parameters.city}`;
 
       try {
         const response = await fetch(hotelUrl, {
