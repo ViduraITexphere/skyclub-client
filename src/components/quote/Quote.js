@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 import "./Quote.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Quote() {
   const [itinerary, setItinerary] = useState(null);
@@ -12,20 +14,23 @@ function Quote() {
     phone: "",
     country: "",
   });
-  const { itineraryId } = useParams(); // Extract itineraryId from URL
+  const { itineraryId } = useParams();
   const token = localStorage.getItem("token");
   const googleId = localStorage.getItem("googleId");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (itineraryId && token) {
-      // fetch(`http://localhost:5000/api/itinerary/${itineraryId}`, {
-      fetch(`https://skyclub-server-new.vercel.app/api/itinerary/${itineraryId}`,{
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      fetch(
+        `https://skyclub-server-new.vercel.app/api/itinerary/${itineraryId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -35,9 +40,11 @@ function Quote() {
         .then((data) => {
           console.log("Fetched itinerary:", data);
           setItinerary(data);
+          setLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching itinerary:", error);
+          setLoading(false);
         });
     }
   }, [itineraryId, token]);
@@ -58,16 +65,18 @@ function Quote() {
         itinerary: itinerary.itinerary,
         userDetails,
       };
-  
-      // fetch("http://localhost:5000/api/itinerary/saveWithDetails", {
-      fetch("https://skyclub-server-new.vercel.app/api/itinerary/saveWithDetails",{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(combinedData),
-      })
+
+      fetch(
+        "https://skyclub-server-new.vercel.app/api/itinerary/saveWithDetails",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(combinedData),
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -94,27 +103,51 @@ function Quote() {
         .then((emailResponse) => {
           console.log("Email sent successfully:", emailResponse);
           // Optionally redirect or show success message
+          toast.success("Email sent successfully!");
         })
         .catch((error) => {
           console.error("Error:", error);
         });
     }
   };
-  
 
-  if (!itinerary || !itinerary.itinerary) {
-    return <p>No itinerary details available.</p>;
+  if (loading) {
+    return (
+      <div className="quote-container-loading">
+        <img
+          style={{
+            height: "130px",
+          }}
+          src="/images/checklist.gif"
+          alt="Loading..."
+        />
+      </div>
+    );
+  }
+
+  if (!itinerary) {
+    return (
+      <div className="err-msg">
+        <p>No itineraries available.</p>
+      </div>
+    );
   }
 
   return (
     <div className="quote-container">
+      <div className="quote-header">
+        <h1 className="header-title">Your Itinerary</h1>
+        <p>
+          Below is the itinerary you requested. Please fill in your details and
+          submit the form to receive a quote.
+        </p>
+      </div>
       <div className="quote-content">
         <div className="itinerary-section">
-          <h1 className="itinerary-title">Your Itinerary</h1>
           {itinerary.itinerary.map((day, index) => (
             <div key={index} className="day-container">
               <h3 className="day-title">Day {day.day}</h3>
-              <Accordion defaultActiveKey={index === 0 ? "0" : null}>
+              <Accordion>
                 {day.places.map((place, placeIndex) => (
                   <Accordion.Item
                     eventKey={placeIndex.toString()}
@@ -175,9 +208,6 @@ function Quote() {
         </div>
         <div className="user-info-section">
           <h2 className="user-info-title">User Information</h2>
-          <p className="user-info-text">
-            <strong>Google ID:</strong> {googleId || "Not available"}
-          </p>
           <form className="quote-form" onSubmit={handleSubmit}>
             <label className="form-label">
               Name:
@@ -234,6 +264,17 @@ function Quote() {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

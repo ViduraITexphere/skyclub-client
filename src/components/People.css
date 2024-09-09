@@ -1,0 +1,65 @@
+.main-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 50px;
+    text-align: left;
+}
+.card-col{
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px;
+    text-align: center;
+    font-family: 'PangeaAfrikan', sans-serif;
+    width: 200px;
+    height: 140px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    gap: 10px;
+
+}
+.icon-people{
+    font-size: 2rem;
+    color: #535353;
+    width: 40px;
+    height:40px;
+    background-color: #fdebdb;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.card-col:hover{
+    background-color: #fafafa;
+    cursor: pointer;
+    border: 2px solid #000000;
+}
+.card-col.selected {
+    background-color: #2e2e2e; /* Change this to your desired color */
+    color: rgb(255, 255, 255);
+  }
+
+  .card-col.selected .icon-people {
+    background-color: #2e2e2e; /* Change this to your desired color */
+    color: white;
+  }
+  
+.card-col:hover .icon-people{
+    background-color: hsl(28, 100%, 50%);
+    color: white;
+}
+.main-heading {
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+.sub-heading {
+    color: #777777;
+}
