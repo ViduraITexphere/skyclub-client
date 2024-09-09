@@ -63,7 +63,7 @@ function Account() {
             {/* /////////////////////////////////////////////// */}
 
             <div className="user-details">
-              <div className="quote-header">
+              <div className="quote-acc-header">
                 <h3>Bill To</h3>
 
                 <p>

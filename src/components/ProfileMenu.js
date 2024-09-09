@@ -55,6 +55,9 @@ const ProfileMenu = () => {
           {!avatar && (
             <li onClick={() => (window.location.href = "/login")}>Login</li>
           )}
+          <li onClick={() => (window.location.href = "/itinerary-list")}>
+            Saved Itineraries
+          </li>
         </ul>
       )}
     </div>
