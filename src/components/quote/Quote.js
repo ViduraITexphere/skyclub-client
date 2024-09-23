@@ -4,15 +4,26 @@ import Accordion from "react-bootstrap/Accordion";
 import "./Quote.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  IconCirclePlusFilled,
+  IconSquareRoundedMinus,
+} from "@tabler/icons-react";
 
 function Quote() {
   const [itinerary, setItinerary] = useState(null);
+  console.log("ITI::", itinerary);
+  const [children, setChildren] = useState([]);
   const [userDetails, setUserDetails] = useState({
     name: "",
     email: "",
-    message: "",
     phone: "",
     country: "",
+    passportNo: "",
+    noOfPax: "",
+    mealPlan: "Room Only",
+    hotelCategory: "",
+    vehicleType: "",
+    specialRequirements: "",
   });
   const { itineraryId } = useParams();
   const token = localStorage.getItem("token");
@@ -57,26 +68,43 @@ function Quote() {
     }));
   };
 
+  const handleChildrenChange = (index, value) => {
+    const updatedChildren = [...children];
+    updatedChildren[index] = value;
+    setChildren(updatedChildren);
+  };
+
+  const addChildField = () => {
+    setChildren([...children, ""]);
+  };
+
+  const removeChildField = (index) => {
+    const updatedChildren = children.filter((_, i) => i !== index);
+    setChildren(updatedChildren);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
     if (itinerary && googleId) {
       const combinedData = {
         googleId,
         itinerary: itinerary.itinerary,
-        userDetails,
+        userDetails: { ...userDetails, children },
+        hotels: itinerary.selectedHotels,
       };
 
-      fetch(
-        "https://skyclub-server-new.vercel.app/api/itinerary/saveWithDetails",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(combinedData),
-        }
-      )
+      // Log data to ensure it's being correctly formed
+      console.log("Submitting the following data:", combinedData);
+
+      fetch("http://localhost:5000/api/itinerary/saveWithDetails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(combinedData),
+      })
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -85,8 +113,9 @@ function Quote() {
         })
         .then((data) => {
           console.log("Data saved successfully:", data);
-          // Send email
-          return fetch("https://skyclub-server-new.vercel.app/api/sendEmail", {
+
+          // Send email after saving
+          return fetch("http://localhost:5000/api/sendEmail", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -102,7 +131,6 @@ function Quote() {
         })
         .then((emailResponse) => {
           console.log("Email sent successfully:", emailResponse);
-          // Optionally redirect or show success message
           toast.success("Email sent successfully!");
         })
         .catch((error) => {
@@ -205,6 +233,42 @@ function Quote() {
               </Accordion>
             </div>
           ))}
+          {itinerary.selectedHotels && itinerary.selectedHotels.length > 0 && (
+            <div className="hotel-section">
+              <h2 className="hotel-title">Selected Hotels</h2>
+              {itinerary.selectedHotels.map((hotel, index) => (
+                <div key={index} className="hotel-container">
+                  <Accordion>
+                    <Accordion.Item
+                      eventKey={index.toString()}
+                      key={index}
+                      className="hotel-accordion"
+                    >
+                      <Accordion.Header className="accordion-header">
+                        <span className="item-number">{index + 1}</span>{" "}
+                        {hotel.name}
+                      </Accordion.Header>
+                      <Accordion.Body className="accordion-body">
+                        <p>{hotel.description}</p>
+                        <p>
+                          <strong>City:</strong> {hotel.city}
+                        </p>
+                        {hotel.image && (
+                          <div className="hotel-image">
+                            <img
+                              src={hotel.image}
+                              alt={hotel.name}
+                              className="img-fluid rounded"
+                            />
+                          </div>
+                        )}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <div className="user-info-section">
           <h2 className="user-info-title">User Information</h2>
@@ -230,15 +294,6 @@ function Quote() {
               />
             </label>
             <label className="form-label">
-              Message:
-              <textarea
-                name="message"
-                value={userDetails.message}
-                onChange={handleInputChange}
-                className="form-textarea"
-              ></textarea>
-            </label>
-            <label className="form-label">
               Phone:
               <input
                 type="tel"
@@ -258,8 +313,101 @@ function Quote() {
                 className="form-input"
               />
             </label>
-            <button type="submit" className="form-submit">
-              Submit
+            <label className="form-label">
+              Passport No (Optional):
+              <input
+                type="text"
+                name="passportNo"
+                value={userDetails.passportNo}
+                onChange={handleInputChange}
+                className="form-input"
+              />
+            </label>
+            <label className="form-label">
+              No of Pax (Optional):
+              <input
+                type="number"
+                name="noOfPax"
+                value={userDetails.noOfPax}
+                onChange={handleInputChange}
+                className="form-input"
+              />
+            </label>
+            <label className="form-label">
+              No of Children:
+              <button id="add-child" type="button" onClick={addChildField}>
+                Add Child <IconCirclePlusFilled />
+              </button>
+              {children.map((child, index) => (
+                <div key={index} className="child-age-field">
+                  <label>
+                    Age of Child {index + 1}:
+                    <input
+                      type="number"
+                      value={child}
+                      onChange={(e) =>
+                        handleChildrenChange(index, e.target.value)
+                      }
+                      className="form-input"
+                    />
+                  </label>
+                  <button
+                    id="remove-chlid"
+                    type="button"
+                    onClick={() => removeChildField(index)}
+                  >
+                    <IconSquareRoundedMinus />
+                  </button>
+                </div>
+              ))}
+            </label>
+            <label className="form-label">
+              Meal Plan:
+              <select
+                name="mealPlan"
+                value={userDetails.mealPlan}
+                onChange={handleInputChange}
+                className="form-input"
+              >
+                <option value="Room Only">Room Only</option>
+                <option value="Bed & Breakfast">Bed & Breakfast</option>
+                <option value="Full Board">Full Board</option>
+                <option value="Half Board">Half Board</option>
+              </select>
+            </label>
+            <label className="form-label">
+              Hotel Category:
+              <input
+                type="text"
+                name="hotelCategory"
+                value={userDetails.hotelCategory}
+                onChange={handleInputChange}
+                className="form-input"
+              />
+            </label>
+            <label className="form-label">
+              Vehicle Type & Category:
+              <input
+                type="text"
+                name="vehicleType"
+                value={userDetails.vehicleType}
+                onChange={handleInputChange}
+                className="form-input"
+              />
+            </label>
+            <label className="form-label">
+              Special Requirements:
+              <input
+                type="text"
+                name="specialRequirements"
+                placeholder="room with sea view"
+                value={userDetails.specialRequirements}
+                onChange={handleInputChange}
+                className="form-input"
+              />
+            </label>
+            <button type="submit" className="submit-button">
+              Request Quote
             </button>
           </form>
         </div>

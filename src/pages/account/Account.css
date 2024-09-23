@@ -93,3 +93,45 @@
   margin-bottom: 20px;
   width: 100%;
 }
+.quote-acc-header-right{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.revise-quote-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.revise-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.submit-revision-btn {
+  align-self: flex-start;
+}
+
+
+.revised-indicator {
+  background-color: #ffcc00; /* Yellow background for the indicator */
+  color: #000; /* Black text color */
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 12px;
+  margin-left: 10px;
+  width: fit-content;
+}
+
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}

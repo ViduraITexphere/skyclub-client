@@ -1,5 +1,6 @@
 import React from "react";
 import "./Sidebar.css"; // Ensure you create this CSS file
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -7,11 +8,18 @@ function Sidebar() {
       <h2>User Account</h2>
       <div className="divider"></div>
       <ul>
-        <li>Home</li>
-        <li>Quotes</li>
-        <li>Profile</li>
-        <li>Settings</li>
-        <li>Logout</li>
+        <li>
+          <Link to="/account">Account</Link>
+        </li>
+        <li>
+          <Link to="/saved-quotes">Saved Quotes</Link>
+        </li>
+        <li>
+          <Link to="/profile">Profile</Link>
+        </li>
+        <li>
+          <Link to="/logout">Logout</Link>
+        </li>
       </ul>
     </div>
   );

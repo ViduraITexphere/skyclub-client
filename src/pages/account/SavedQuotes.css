@@ -1,0 +1,88 @@
+/* SavedQuotes.css */
+
+.saved-quotes-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 50px;
+
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+  }
+  
+  .loading-message {
+    text-align: center;
+  }
+  
+  .quote-card-pinned {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .quote-id-pinned {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .quote-details-pinned {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .user-details-pinned,
+  .cost-details-pinned {
+    width: 48%;
+  }
+  
+  .user-details-pinned p,
+  .cost-details-pinned p {
+    margin: 5px 0;
+  }
+  
+  .itinerary-details {
+    margin-top: 20px;
+  }
+  
+  .day-details {
+    margin-bottom: 20px;
+  }
+  
+  .places,
+  .restaurants {
+    margin-top: 10px;
+  }
+  
+  .place-item,
+  .restaurant-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+  }
+  
+  .place-item h6,
+  .restaurant-item h6 {
+    margin: 0;
+    font-size: 1em;
+  }
+  
+  .divider {
+    margin: 20px 0;
+  }
+  
+  .no-quotes {
+    text-align: center;
+  }
+  

@@ -1,0 +1,16 @@
+.payment-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .payment-info, .payment-summary, .payment-instructions {
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  h3 {
+    margin-bottom: 10px;
+  }
+  

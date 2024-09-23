@@ -14,6 +14,9 @@ import Account from "./pages/account/Account";
 import People from "./components/People";
 import Login from "./components/Auth/login/Login";
 import AuthCheck from "./components/Auth/AuthCheck";
+import PaymentPage from "./pages/payment/PaymentPage";
+import SavedQuotes from "./pages/account/SavedQuotes";
+import UserProfile from "./components/user/UserProfile";
 
 function App() {
   const [city, setCity] = useState("");
@@ -41,9 +44,12 @@ function App() {
         <Route path="/People" element={<People />} />
         <Route path="/login" element={<Login />} />
         <Route path="/quote" element={<Quote />} />
+        <Route path="/saved-quotes" element={<SavedQuotes />} />
         <Route path="/quote/:itineraryId" element={<Quote />} />
         <Route path="/itinerary-list" element={<ItinerariesList />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/profile" element={<UserProfile />} />
 
         <Route
           path="attractions"
