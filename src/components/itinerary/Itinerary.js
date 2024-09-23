@@ -24,9 +24,10 @@ function Itinerary({ data }) {
   );
   console.log(localStorage.getItem("googleId")); // Should print the stored value
 
-  console.log("isLoggedIn", isLoggedIn);
+  // console.log("isLoggedIn", isLoggedIn);
   const [isSaved, setIsSaved] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [selectedHotels, setSelectedHotels] = useState([]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -99,17 +100,59 @@ function Itinerary({ data }) {
   }, [parameters.city]);
 
   // Function to handle hotel selection
+  // const handleSelectHotel = (hotel) => {
+  //   console.log(`Selected hotel: ${hotel.name}`);
+  // };
+
   const handleSelectHotel = (hotel) => {
     console.log(`Selected hotel: ${hotel.name}`);
-    // You can handle the hotel selection logic here, e.g., displaying a confirmation message
+    setSelectedHotels((prevHotels) => {
+      // Check if the hotel is already selected
+      const isHotelSelected = prevHotels.find((h) => h._id === hotel._id);
+
+      if (isHotelSelected) {
+        // Remove the hotel if it's already selected
+        return prevHotels.filter((h) => h._id !== hotel._id);
+      } else {
+        // Add the hotel to the selected list
+        return [...prevHotels, hotel];
+      }
+    });
   };
 
   // Function to save itinerary
+  // const saveItinerary = () => {
+  //   if (!userToken || !googleId) return;
+
+  //   const saveUrl = "https://skyclub-server-new.vercel.app/api/itinerary/save";
+  //   const payload = { googleId, itinerary };
+
+  //   fetch(saveUrl, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${userToken}`,
+  //     },
+  //     body: JSON.stringify(payload),
+  //   })
+  //     .then((response) => response.json())
+  //     .then(() => {
+  //       setSuccessMessage("Your itinerary was successfully saved!");
+  //       setIsSaved(true);
+  //       dispatch(setItinerary({ itinerary, googleId }));
+
+  //       setTimeout(() => {
+  //         navigate("/itinerary-list");
+  //       }, 2000);
+  //     })
+  //     .catch((error) => console.error("Error saving itinerary:", error));
+  // };
+
   const saveItinerary = () => {
     if (!userToken || !googleId) return;
 
-    const saveUrl = "https://skyclub-server-new.vercel.app/api/itinerary/save";
-    const payload = { googleId, itinerary };
+    const saveUrl = "http://localhost:5000/api/itinerary/save";
+    const payload = { googleId, itinerary, selectedHotels }; // Include selectedHotels
 
     fetch(saveUrl, {
       method: "POST",
@@ -123,7 +166,7 @@ function Itinerary({ data }) {
       .then(() => {
         setSuccessMessage("Your itinerary was successfully saved!");
         setIsSaved(true);
-        dispatch(setItinerary({ itinerary, googleId }));
+        dispatch(setItinerary({ itinerary, googleId, selectedHotels })); // Include selectedHotels in dispatch
 
         setTimeout(() => {
           navigate("/itinerary-list");
@@ -234,11 +277,23 @@ function Itinerary({ data }) {
                         /> */}
                       </div>
                     )}
-                    <Button
+                    {/* <Button
                       variant="primary"
                       onClick={() => handleSelectHotel(hotel)}
                     >
                       Select Hotel
+                    </Button> */}
+                    <Button
+                      variant={
+                        selectedHotels.find((h) => h._id === hotel._id)
+                          ? "danger"
+                          : "primary"
+                      }
+                      onClick={() => handleSelectHotel(hotel)}
+                    >
+                      {selectedHotels.find((h) => h._id === hotel._id)
+                        ? "Deselect Hotel"
+                        : "Select Hotel"}
                     </Button>
                   </div>
                 </SwiperSlide>

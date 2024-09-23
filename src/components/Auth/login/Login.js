@@ -121,13 +121,14 @@
 
 import React, { useState } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; // import useLocation
 import axios from "axios";
-import { jwtDecode } from "jwt-decode"; // Correct the import
+import { jwtDecode } from "jwt-decode"; // correct jwtDecode import
 import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation(); // get the current location
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
@@ -161,8 +162,14 @@ function Login() {
         // Trigger re-render by dispatching a custom event
         window.dispatchEvent(new Event("avatarUpdate"));
 
-        // Redirect to homepage
-        navigate("/");
+        // Redirect based on the current path
+        if (location.pathname === "/itinerary") {
+          // If the user is on the /itinerary path, redirect them to the same page
+          navigate("/itinerary");
+        } else {
+          // If not on /itinerary, redirect to homepage
+          navigate("/");
+        }
       }
     } catch (error) {
       console.error("Login failed:", error);
