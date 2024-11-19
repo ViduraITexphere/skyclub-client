@@ -27,7 +27,7 @@ const SavedQuotes = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/itinerary/getPinnedQuotes",
+        "https://skyclub-server-new.vercel.app/api/itinerary/getPinnedQuotes",
         { googleId: googleId } // Send Google ID in request body
       );
 

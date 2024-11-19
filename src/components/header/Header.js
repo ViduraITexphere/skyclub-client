@@ -82,6 +82,9 @@ function Header() {
             <a className="home-button" href="https://skytravelclub.com/">
               <FaHome /> Home
             </a>
+            <a className="home-button" href="https://skytravelclub.com/">
+              About us
+            </a>
             {/* select country dropdown */}
             <div className="dropdown">
               <a className="home-button">
@@ -100,13 +103,7 @@ function Header() {
               className="home-button"
               href="https://skytravelclub.com/sky-chat/"
             >
-              <FaComments /> Sky Chat
-            </a>
-            <a
-              className="home-button"
-              href="https://skytravelclub.com/new/blog/"
-            >
-              Blog
+              Media Center
             </a>
 
             {/* <a href="https://skytravelclub.com/new/login/">
@@ -139,34 +136,7 @@ function Header() {
                 <a href="https://skytravelclub.com/membership/">Membership</a>
               </li>
               <li className="dropdown">
-                <a href="#trips">Tours</a> <FaCaretDown />
-                <ul className="dropdown-content">
-                  <li>
-                    <a href="https://skytravelclub.com/new/create-trip-with-ai/">
-                      Create trip with AI
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://skytravelclub.com/new/tailor-made-tours/">
-                      Tailor made tours
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://skytravelclub.com/new/most-popular/">
-                      Most popular
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://skytravelclub.com/new/destinations/">
-                      International Tours
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://skytravelclub.com/solo-travelers/">
-                      Solo Travelers
-                    </a>
-                  </li>
-                </ul>
+                <a href="https://skytravelclub.com/tours/">Tours</a>
               </li>
               <li>
                 <a href="https://skytravelclub.com/hotels/">Hotels</a>

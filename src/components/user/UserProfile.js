@@ -24,7 +24,7 @@ const ProfilePage = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/user/profile/${googleId}`
+        `https://skyclub-server-new.vercel.app/api/user/profile/${googleId}`
       );
       setUserProfile(response.data);
       setFormData(response.data); // Initialize form data with user profile
@@ -51,7 +51,7 @@ const ProfilePage = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/user/profile/${googleId}`,
+        `https://skyclub-server-new.vercel.app/api/user/profile/${googleId}`,
         formData
       );
       alert("Profile updated successfully!");

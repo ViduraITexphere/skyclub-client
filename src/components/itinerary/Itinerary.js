@@ -151,7 +151,7 @@ function Itinerary({ data }) {
   const saveItinerary = () => {
     if (!userToken || !googleId) return;
 
-    const saveUrl = "http://localhost:5000/api/itinerary/save";
+    const saveUrl = "https://skyclub-server-new.vercel.app/api/itinerary/save";
     const payload = { googleId, itinerary, selectedHotels }; // Include selectedHotels
 
     fetch(saveUrl, {

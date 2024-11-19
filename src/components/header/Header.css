@@ -9,11 +9,11 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  font-family: 'PangeaAfrikan', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .header__logo img {
-  height: 100px;
+  height: 127px;
   position: fixed;
   top: 4%;
   left: 2%;
@@ -24,6 +24,7 @@
   border-top: 1px solid #5f5f5f;
   padding-top: 10px;
   color: #f1f1f1;
+  font-family: "Poppins", sans-serif;
 }
 
 .header__nav ul {
@@ -32,18 +33,21 @@
   gap: 30px; /* Adjust gap as needed */
   margin: 0;
   padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 .header__nav ul li {
   position: relative;
+  font-family: "Poppins", sans-serif;
 }
 
 .header__nav ul li a {
   text-decoration: none !important; /* Ensure underline is removed */
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   color: #ffffff;
   transition: color 0.3s; /* Smooth color transition */
+  font-family: "Poppins", sans-serif !important;
 }
 
 .header__nav ul li a:hover {
@@ -71,7 +75,7 @@
 .topnav .dropdown-content li {
   text-align: left;
   width: 100%;
-  font-family: 'PangeaAfrikan', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .header__nav .dropdown-content li a,
@@ -101,7 +105,7 @@
   justify-content: flex-end;
   align-items: center;
   background-color: #060030;
-  padding: 10px 20px;
+  padding: 10px 0px;
 }
 
 .topnav a {
@@ -151,8 +155,9 @@
   text-decoration: none;
   gap: 5px;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
   margin-right: 20px;
+  font-family: "Poppins", sans-serif;
 }
 
 .home-button:hover {
@@ -166,13 +171,13 @@
   padding: 6px 20px;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  font-family: 'PangeaAfrikan', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .login:hover {
