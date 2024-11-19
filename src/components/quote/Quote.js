@@ -97,14 +97,17 @@ function Quote() {
       // Log data to ensure it's being correctly formed
       console.log("Submitting the following data:", combinedData);
 
-      fetch("http://localhost:5000/api/itinerary/saveWithDetails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(combinedData),
-      })
+      fetch(
+        "https://skyclub-server-new.vercel.app/api/itinerary/saveWithDetails",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(combinedData),
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -115,7 +118,7 @@ function Quote() {
           console.log("Data saved successfully:", data);
 
           // Send email after saving
-          return fetch("http://localhost:5000/api/sendEmail", {
+          return fetch("https://skyclub-server-new.vercel.app/api/sendEmail", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

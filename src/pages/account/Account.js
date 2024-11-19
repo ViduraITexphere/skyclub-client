@@ -71,7 +71,7 @@ function Account() {
   const handlePinQuote = async (quoteId) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/itinerary/pinQuote/${quoteId}`
+        `https://skyclub-server-new.vercel.app/api/itinerary/pinQuote/${quoteId}`
       );
 
       const updatedQuote = response.data;
@@ -114,7 +114,7 @@ function Account() {
       updatedQuote.revision = revisedQuote;
 
       await axios.put(
-        `http://localhost:5000/api/itinerary/reviseQuote/${isRevising}`,
+        `https://skyclub-server-new.vercel.app/api/itinerary/reviseQuote/${isRevising}`,
         updatedQuote
       );
 
@@ -135,7 +135,7 @@ function Account() {
   const confirmDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/itinerary/deleteQuote/${quoteToDelete}`
+        `https://skyclub-server-new.vercel.app/api/itinerary/deleteQuote/${quoteToDelete}`
       );
       setQuotes((prevQuotes) =>
         prevQuotes.filter((quote) => quote._id !== quoteToDelete)
