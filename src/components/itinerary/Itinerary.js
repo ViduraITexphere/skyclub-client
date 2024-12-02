@@ -251,11 +251,10 @@ function Itinerary({ data }) {
           </h3>
           <Swiper
             className="swiper-container"
-            // install Swiper modules
-
             spaceBetween={20}
-            slidesPerView={1.5}
-            navigation
+            slidesPerView={2} // Display 3 slides
+            navigation // Enable navigation
+            modules={[Navigation, Pagination, Scrollbar, A11y]} // Include Navigation
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log("slide change")}
           >
@@ -263,26 +262,23 @@ function Itinerary({ data }) {
               hotels.map((hotel, index) => (
                 <SwiperSlide key={index}>
                   <div className="hotel-card">
-                    <h4 className="hotel-name">{hotel.name}</h4>
-                    <p className="hotel-description">{hotel.description}</p>
-                    <p className="hotel-rating">
-                      <strong>Rating:</strong> {hotel.rating}
-                    </p>
                     {hotel.image && (
                       <div className="hotel-image">
-                        {/* <img
-                          src={`/images/${hotel.image}`}
+                        <img
+                          src={`data:image/jpeg;base64,${hotel.image}`}
                           alt={hotel.name}
                           className="d-block w-100 img-fluid rounded"
-                        /> */}
+                        />
                       </div>
                     )}
-                    {/* <Button
-                      variant="primary"
-                      onClick={() => handleSelectHotel(hotel)}
-                    >
-                      Select Hotel
-                    </Button> */}
+                    <h4 className="hotel-name">{hotel.name}</h4>
+                    <p className="hotel-description">
+                      {" "}
+                      {hotel.description.split(" ").slice(0, 18).join(" ")}...
+                    </p>
+                    <p className="hotel-rating">
+                      <strong>Rating:</strong> {hotel.startRating || "N/A"}
+                    </p>
                     <Button
                       variant={
                         selectedHotels.find((h) => h._id === hotel._id)
@@ -301,7 +297,6 @@ function Itinerary({ data }) {
             ) : (
               <p>No hotels available for this city.</p>
             )}
-            ...
           </Swiper>
         </div>
         {Array.isArray(itinerary) && itinerary.length > 0 ? (
